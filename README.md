@@ -9,6 +9,9 @@
   - [BIOS 设置](#bios-设置)
     - [Disable](#disable)
     - [Enable](#enable)
+  - [总结](#总结)
+    - [工作项](#工作项)
+    - [无法驱动](#无法驱动)
   - [参考项目](#参考项目)
 
 <!-- /TOC -->
@@ -69,14 +72,16 @@
 ## 驱动
 
 - [Lilu](https://github.com/acidanthera/Lilu/releases) - 各种驱动的核心平台
-- [AppleALC](https://github.com/acidanthera/AppleALC/releases) - 声卡驱动
+- [AppleALC](https://github.com/acidanthera/AppleALC/releases) - 声卡驱动，设备ID是 Conexant 14F1/20D0，没有找到 [layout-id](https://github.com/acidanthera/AppleALC/wiki/Supported-codecs)，尝试3，或更换：VoodooHDA + AppleHDADisabler，另 AppleHDA
 - [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases) - 显卡驱动
 - [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) - SMC内核仿真、传感器
 - [itlwm v1.2.0](https://github.com/OpenIntelWireless/itlwm/) - Intel 无线网卡，安装时可以事先把 Wifi 连接信息写在 Info.plist 里
 - [VoodooPS2 v2.2.2](https://github.com/acidanthera/VoodooPS2) - 触摸板驱动
+- [VoodooI2C](https://github.com/VoodooI2C/VoodooI2C)
 - [NVMeFix v1.0.5](https://github.com/acidanthera/NVMeFix) - NVMe 提升兼容性
 - [IntelBluetoothFirmware v1.1.2](https://github.com/OpenIntelWireless/IntelBluetoothFirmware) - Intel 蓝牙驱动，设备ID：0x8087, 0x0a2b
 - USB 定制
+- CPUFriend
 
 [config.plist 配置参考](https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/kaby-lake.html)
 
@@ -106,6 +111,41 @@
 - DVMT Pre-Allocated(iGPU Memory): 64MB
 - SATA Mode: AHCI
 
+实际 BIOS 设置，[参考](https://github.com/kinoute/Hack-HP-EliteBook-850-G5/blob/master/BIOS/README.md)
+
+- Virtualization Technology (VTx) - Yes
+- Virtualization Technology for Directed I/O (VTd) - Yes
+- Fast Boot - No
+- Video Memory Size - 64 MB
+- Intel Management Enginge (ME) - Yes
+
+## 总结
+
+### 工作项
+
+- Wifi
+- 蓝牙
+- 触摸板 + 手势
+- NVMe 存储
+- USB 3.0
+- Type-C
+- 耳机孔
+- 外放
+- 键盘快捷键、键盘灯
+- 睡眠
+- HP Sure View
+
+### 无法驱动
+
+- 触摸屏
+- 摄像头
+- MicroSD 读卡器
+- 翻转屏
+- 指纹识别
+
 ## 参考项目
 
 - [Hack-HP-Elitebook-X360-1030-G2](https://github.com/cguo2013/Hack-HP-Elitebook-X360-1030-G2)
+- [Hack-HP-EliteBook-850-G5](https://github.com/kinoute/Hack-HP-EliteBook-850-G5)
+- [jcheunglin/HP-Elitebook-830-G5-Hackintosh](https://github.com/jcheunglin/HP-Elitebook-830-G5-Hackintosh)
+- [kecinzer/hpelitebook850g5-opencore](https://github.com/kecinzer/hpelitebook850g5-opencore)
