@@ -74,6 +74,8 @@
 - [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) - SMC内核仿真、传感器
 - [itlwm v1.2.0](https://github.com/OpenIntelWireless/itlwm/) - Intel 无线网卡，安装时可以事先把 Wifi 连接信息写在 Info.plist 里
 - [VoodooPS2 v2.2.2](https://github.com/acidanthera/VoodooPS2) - 触摸板驱动
+- [NVMeFix v1.0.5](https://github.com/acidanthera/NVMeFix) - NVMe 提升兼容性
+- [IntelBluetoothFirmware v1.1.2](https://github.com/OpenIntelWireless/IntelBluetoothFirmware) - Intel 蓝牙驱动，设备ID：0x8087, 0x0a2b
 - USB 定制
 
 [config.plist 配置参考](https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/kaby-lake.html)
