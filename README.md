@@ -68,14 +68,12 @@
 
 ## 驱动
 
-- Lilo
-- WhateverGreen
-- VirtualSMC
-- AppleALC
-- itlwm - Intel 无线网卡
-- VoodoPS2Controller - 触摸板
-- VoodooI2C.kext
-- VoodooI2CHID.kext
+- [Lilu](https://github.com/acidanthera/Lilu/releases) - 各种驱动的核心平台
+- [AppleALC](https://github.com/acidanthera/AppleALC/releases) - 声卡驱动
+- [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases) - 显卡驱动
+- [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) - SMC内核仿真、传感器
+- [itlwm v1.2.0](https://github.com/OpenIntelWireless/itlwm/) - Intel 无线网卡，安装时可以事先把 Wifi 连接信息写在 Info.plist 里
+- [VoodooPS2 v2.2.2](https://github.com/acidanthera/VoodooPS2) - 触摸板驱动
 - USB 定制
 
 [config.plist 配置参考](https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/kaby-lake.html)
