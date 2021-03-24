@@ -1,0 +1,91 @@
+into device label EC0 code_regex CPWR,\s+16 replace_matched begin DC00,8,DC01,8 end;
+into device label EC0 code_regex CVLT,\s+16 replace_matched begin DC02,8,DC03,8 end;
+into device label EC0 code_regex CCUR,\s+16 replace_matched begin DC04,8,DC05,8 end;
+into device label EC0 code_regex WKTR,\s+16 replace_matched begin DC06,8,DC07,8 end;
+into device label EC0 code_regex S5TR,\s+16 replace_matched begin DC08,8,DC09,8 end;
+into device label EC0 code_regex BDC,\s+16 replace_matched begin DC10,8,DC11,8 end;
+into device label EC0 code_regex BFC,\s+16 replace_matched begin DC12,8,DC13,8 end;
+into device label EC0 code_regex BRTE,\s+16 replace_matched begin DC14,8,DC15,8 end;
+into device label EC0 code_regex BME,\s+16 replace_matched begin DC16,8,DC17,8 end;
+into device label EC0 code_regex BDV,\s+16 replace_matched begin DC18,8,DC19,8 end;
+into device label EC0 code_regex BCV1,\s+16 replace_matched begin DC20,8,DC21,8 end;
+into device label EC0 code_regex BATE,\s+16 replace_matched begin DC22,8,DC23,8 end;
+into device label EC0 code_regex BPR,\s+16 replace_matched begin DC24,8,DC25,8 end;
+into device label EC0 code_regex BCR,\s+16 replace_matched begin DC26,8,DC27,8 end;
+into device label EC0 code_regex BRC,\s+16 replace_matched begin DC28,8,DC29,8 end;
+into device label EC0 code_regex BCC,\s+16 replace_matched begin DC30,8,DC31,8 end;
+into device label EC0 code_regex BPV,\s+16 replace_matched begin DC32,8,DC33,8 end;
+into device label EC0 code_regex BCV2,\s+16 replace_matched begin DC34,8,DC35,8 end;
+into device label EC0 code_regex BCV3,\s+16 replace_matched begin DC36,8,DC37,8 end;
+into device label EC0 code_regex BCV4,\s+16 replace_matched begin DC38,8,DC39,8 end;
+into device label EC0 code_regex BCW,\s+16 replace_matched begin DC40,8,DC41,8 end;
+into device label EC0 code_regex BATF,\s+16 replace_matched begin DC42,8,DC43,8 end;
+into device label EC0 code_regex BCL,\s+16 replace_matched begin DC44,8,DC45,8 end;
+into device label EC0 code_regex MAXC,\s+16 replace_matched begin DC46,8,DC47,8 end;
+into device label EC0 code_regex BSTS,\s+16 replace_matched begin DC48,8,DC49,8 end;
+into device label EC0 code_regex BSN,\s+16 replace_matched begin DC50,8,DC51,8 end;
+into device label EC0 code_regex BDAT,\s+16 replace_matched begin DC52,8,DC53,8 end;
+into device label EC0 code_regex CCBQ,\s+16 replace_matched begin DC54,8,DC55,8 end;
+into device label EC0 code_regex CBT,\s+16 replace_matched begin DC56,8,DC57,8 end;
+
+
+into method label B1B2 remove_entry;
+into definitionblock code_regex . insert
+begin
+Method (B1B2, 2, NotSerialized)\n
+{\n
+Return(Or(Arg0, ShiftLeft(Arg1, 8)))\n
+}\n
+end;
+
+into method label GBAW code_regex \(BDV, replaceall_matched begin (B1B2(DC18,DC19), end;
+into method label GBAW code_regex \(BDC, replaceall_matched begin (B1B2(DC10,DC11), end;
+
+into method label BTIF code_regex \(BFC, replaceall_matched begin (B1B2(DC12,DC13), end;
+into method label BTIF code_regex \(BDV, replaceall_matched begin (B1B2(DC18,DC19), end;
+into method label BTIF code_regex \(BSN, replaceall_matched begin (B1B2(DC50,DC51), end;
+into method label BTIF code_regex \(BDAT, replaceall_matched begin (B1B2(DC52,DC53), end;
+
+into method label BTST code_regex \(BPR, replaceall_matched begin (B1B2(DC24,DC25), end;
+into method label BTST code_regex \(BRC, replaceall_matched begin (B1B2(DC28,DC29), end;
+into method label BTST code_regex \(BPV, replaceall_matched begin (B1B2(DC32,DC33), end;
+
+into method label ITLB code_regex \(BFC, replaceall_matched begin (B1B2(DC12,DC13), end;
+
+into method label GBTI code_regex \(BDC, replaceall_matched begin (B1B2(DC10,DC11), end;
+into method label GBTI code_regex \(BFC, replaceall_matched begin (B1B2(DC12,DC13), end;
+into method label GBTI code_regex \(BRC, replaceall_matched begin (B1B2(DC28,DC29), end;
+into method label GBTI code_regex \(BME, replaceall_matched begin (B1B2(DC16,DC17), end;
+into method label GBTI code_regex \(BCC, replaceall_matched begin (B1B2(DC30,DC31), end;
+into method label GBTI code_regex \(CBT, replaceall_matched begin (B1B2(DC56,DC57), end;
+into method label GBTI code_regex \(BPV, replaceall_matched begin (B1B2(DC32,DC33), end;
+into method label GBTI code_regex \(BPR, replaceall_matched begin (B1B2(DC24,DC25), end;
+into method label GBTI code_regex \(BSTS, replaceall_matched begin (B1B2(DC48,DC49), end;
+into method label GBTI code_regex \(BDV, replaceall_matched begin (B1B2(DC18,DC19), end;
+into method label GBTI code_regex \(BCV1, replaceall_matched begin (B1B2(DC20,DC21), end;
+into method label GBTI code_regex \(BCV2, replaceall_matched begin (B1B2(DC34,DC35), end;
+into method label GBTI code_regex \(BCV3, replaceall_matched begin (B1B2(DC36,DC37), end;
+into method label GBTI code_regex \(BSN, replaceall_matched begin (B1B2(DC50,DC51), end;
+into method label GBTI code_regex \(BDAT, replaceall_matched begin (B1B2(DC52,DC53), end;
+into method label GBTI code_regex \(BCR, replaceall_matched begin (B1B2(DC26,DC27), end;
+into method label GBTI code_regex \(BRTE, replaceall_matched begin (B1B2(DC14,DC15), end;
+into method label GBTI code_regex \(BATE, replaceall_matched begin (B1B2(DC22,DC23), end;
+into method label GBTI code_regex \(BATF, replaceall_matched begin (B1B2(DC42,DC43), end;
+
+into method label GBTC code_regex \(MAXC, replaceall_matched begin (B1B2(DC46,DC47), end;
+into method label SBTC code_regex MAXC replaceall_matched begin B1B2(DC46,DC47) end;
+
+into method label GCGC code_regex \(\\\_SB.PCI0.LPCB.EC0.BPR replaceall_matched begin \(B1B2(\\_SB.PCI0.LPCB.EC0.DC24 \\_SB.PCI0.LPCB.EC0.DC25) end;
+
+#Fix Battery 0% Status
+# 10x as workaround for MaciASL bug...
+into_all all code_regex Mutex\s+\(([^,]*),\s+[^)]*\) replaceall_matched begin Mutex(%1, 0) end;
+into_all all code_regex Mutex\s+\(([^,]*),\s+[^)]*\) replaceall_matched begin Mutex(%1, 0) end;
+into_all all code_regex Mutex\s+\(([^,]*),\s+[^)]*\) replaceall_matched begin Mutex(%1, 0) end;
+into_all all code_regex Mutex\s+\(([^,]*),\s+[^)]*\) replaceall_matched begin Mutex(%1, 0) end;
+into_all all code_regex Mutex\s+\(([^,]*),\s+[^)]*\) replaceall_matched begin Mutex(%1, 0) end;
+into_all all code_regex Mutex\s+\(([^,]*),\s+[^)]*\) replaceall_matched begin Mutex(%1, 0) end;
+into_all all code_regex Mutex\s+\(([^,]*),\s+[^)]*\) replaceall_matched begin Mutex(%1, 0) end;
+into_all all code_regex Mutex\s+\(([^,]*),\s+[^)]*\) replaceall_matched begin Mutex(%1, 0) end;
+into_all all code_regex Mutex\s+\(([^,]*),\s+[^)]*\) replaceall_matched begin Mutex(%1, 0) end;
+into_all all code_regex Mutex\s+\(([^,]*),\s+[^)]*\) replaceall_matched begin Mutex(%1, 0) end;

@@ -3,16 +3,16 @@
 <!-- TOC -->
 
 - [HP EliteBook x360 1030 G3 Notebook PC Hackintosh](#hp-elitebook-x360-1030-g3-notebook-pc-hackintosh)
-  - [硬件](#硬件)
-  - [ACPI](#acpi)
-  - [驱动](#驱动)
-  - [BIOS 设置](#bios-设置)
-    - [Disable](#disable)
-    - [Enable](#enable)
-  - [总结](#总结)
-    - [工作项](#工作项)
-    - [无法驱动](#无法驱动)
-  - [参考项目](#参考项目)
+    - [硬件](#硬件)
+    - [ACPI](#acpi)
+    - [驱动](#驱动)
+    - [BIOS 设置](#bios-设置)
+        - [Disable](#disable)
+        - [Enable](#enable)
+    - [总结](#总结)
+        - [工作项](#工作项)
+        - [无法驱动](#无法驱动)
+    - [参考项目](#参考项目)
 
 <!-- /TOC -->
 - OpenCore 0.6.7 - [OpenCore 安装指引](https://dortania.github.io/OpenCore-Install-Guide/)
@@ -82,6 +82,7 @@
 - [IntelBluetoothFirmware v1.1.2](https://github.com/OpenIntelWireless/IntelBluetoothFirmware) - Intel 蓝牙驱动，设备ID：0x8087, 0x0a2b
 - USB 定制
 - CPUFriend
+- ACPIBatteryManager - 电池传感器，还需要配合修复 DSDT.aml
 
 [config.plist 配置参考](https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/kaby-lake.html)
 
