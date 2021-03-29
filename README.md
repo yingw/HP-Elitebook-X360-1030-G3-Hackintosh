@@ -10,8 +10,8 @@
         - [Disable](#disable)
         - [Enable](#enable)
     - [总结](#总结)
-        - [工作项](#工作项)
-        - [无法驱动](#无法驱动)
+        - [正常工作项](#正常工作项)
+        - [不工作项](#不工作项)
     - [参考项目](#参考项目)
 
 <!-- /TOC -->
@@ -51,7 +51,7 @@
 
 - 有线网卡 - 无，使用外部 TypeC 转时
 - 存储2 - NVME
-- 翻转屏、触摸屏
+- 翻转屏、触摸屏、指纹识别
 
 ## ACPI
 
@@ -80,9 +80,9 @@
 - [VoodooI2C](https://github.com/VoodooI2C/VoodooI2C)
 - [NVMeFix v1.0.5](https://github.com/acidanthera/NVMeFix) - NVMe 提升兼容性
 - [IntelBluetoothFirmware v1.1.2](https://github.com/OpenIntelWireless/IntelBluetoothFirmware) - Intel 蓝牙驱动，设备ID：0x8087, 0x0a2b
-- USB 定制
+- USB 定制 - 用户 Hackintool 生成 ACPI 补丁
 - CPUFriend
-- ACPIBatteryManager - 电池传感器，还需要配合修复 DSDT.aml
+- [ACPIBatteryManager](https://github.com/RehabMan/OS-X-ACPI-Battery-Driver) - 电源管理驱动，修正电池电量信息，需要修复 DSDT.aml，[补丁文件](./ACPI/patch.txt)
 
 [config.plist 配置参考](https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/kaby-lake.html)
 
@@ -122,27 +122,37 @@
 
 ## 总结
 
-### 工作项
+### 正常工作项
 
-- Wifi
-- 蓝牙
-- 触摸板 + 手势
-- NVMe 存储
-- USB 3.0
-- Type-C
-- 耳机孔
-- 外放
-- 键盘快捷键、键盘灯
-- 睡眠
-- HP Sure View
+- [x] 声卡 - 耳机孔无自动切换
+- [x] 显卡 - HDMI 输出有，但开机、休眠无自动切换
+- [x] 睿频
+- [x] NVMe 硬盘
+- [x] USB 定制 - 删掉07禁用内部蓝牙
+- [x] 无线网卡
+- [x] 有线网卡
+- [x] 触摸板 - 手势正常，轻触无
+- [x] 触摸屏 - 可触摸、模拟触摸板手势，但副屏触摸没有作用在副屏上
+- [x] 翻转屏 - 禁用键盘，但没有平板模式
+- [x] 蓝牙 - 使用外置USB蓝牙 A8510A10
+- [x] 键盘 - 偶有几次启动键盘没有加载，重启一下就好了，所以最好开着屏幕键盘
+- [x] CPU 温度传感器
+- [x] RTC 修复 - 修复开机报错时钟丢失
+- [x] 隔空播放 - 正常
+- [x] 电池
+- [x] Type-C 视频输出、转 USB 3.0
+- [x] 键盘 Fn 定制 - 基本可以靠 Karabiner 映射缺失的亮度调整按键
 
-### 无法驱动
+### 不工作项
 
-- 触摸屏
-- 摄像头
-- MicroSD 读卡器
-- 翻转屏
-- 指纹识别
+- [ ] 摄像头
+- [ ] 睡眠唤醒
+- [ ] MicroSD 读卡器
+- [ ] 指纹识别
+- [ ] 随航
+- [ ] 接力
+- [ ] 触控笔
+- [ ] CPU 风扇传感器
 
 ## 参考项目
 
