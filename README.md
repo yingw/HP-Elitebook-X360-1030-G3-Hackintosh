@@ -4,6 +4,7 @@
 
 - [HP EliteBook x360 1030 G3 Notebook PC Hackintosh](#hp-elitebook-x360-1030-g3-notebook-pc-hackintosh)
     - [硬件](#硬件)
+    - [OpenCore](#opencore)
     - [ACPI](#acpi)
     - [驱动](#驱动)
     - [BIOS 设置](#bios-设置)
@@ -15,7 +16,6 @@
     - [参考项目](#参考项目)
 
 <!-- /TOC -->
-- OpenCore 0.6.7 - [OpenCore 安装指引](https://dortania.github.io/OpenCore-Install-Guide/)
 
 ## 硬件
 
@@ -53,36 +53,46 @@
 - 存储2 - NVME
 - 翻转屏、触摸屏、指纹识别
 
+## OpenCore
+
+- [OpenCore](https://github.com/acidanthera/OpenCorePkg/releases) - v0.6.8, [OpenCore 安装指引](https://dortania.github.io/OpenCore-Install-Guide/)
+
+必要工具
+
+- OCC
+- [ProperTree](https://github.com/corpnewt/ProperTree) - 编辑 plist 文件
+- [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS) - 生成 SMBIOS
+- Hackintool - 工具集
+
 ## ACPI
 
 [ACPI 配置参考](https://dortania.github.io/Getting-Started-With-ACPI/ssdt-platform.html#laptop)
 
 - SSDT-PLUG - CPU电源管理
 - SSDT-EC-USBX - 修复USB控制器和电源
-- SSDT-GPIO - VoodooI2C 触控板
-- SSDT-PNLF - 修复亮度控制
+- SSDT-GPIO - 触控板
 
-下载 prebuild 文件：
-
-- SSDT-EC-USBX-LAPTOP.aml
-- SSDT-PLUG.aml
-- SSDT-PNLF.aml
-- SSDT-XOSI.aml
+下载 prebuild 文件
 
 ## 驱动
 
-- [Lilu](https://github.com/acidanthera/Lilu/releases) - 各种驱动的核心平台
-- [AppleALC](https://github.com/acidanthera/AppleALC/releases) - 声卡驱动，设备ID是 Conexant 14F1/20D0，没有找到 [layout-id](https://github.com/acidanthera/AppleALC/wiki/Supported-codecs)，尝试3，或更换：VoodooHDA + AppleHDADisabler，另 AppleHDA
-- [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases) - 显卡驱动
-- [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) - SMC内核仿真、传感器
-- [itlwm v1.2.0](https://github.com/OpenIntelWireless/itlwm/) - Intel 无线网卡，安装时可以事先把 Wifi 连接信息写在 Info.plist 里
-- [VoodooPS2 v2.2.2](https://github.com/acidanthera/VoodooPS2) - 触摸板驱动
-- [VoodooI2C](https://github.com/VoodooI2C/VoodooI2C)
-- [NVMeFix v1.0.5](https://github.com/acidanthera/NVMeFix) - NVMe 提升兼容性
-- [IntelBluetoothFirmware v1.1.2](https://github.com/OpenIntelWireless/IntelBluetoothFirmware) - Intel 蓝牙驱动，设备ID：0x8087, 0x0a2b
+- [Lilu](https://github.com/acidanthera/Lilu/releases) - 各种驱动的核心平台, v1.5.2
+- [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases) - 显卡驱动, v1.4.9
+- [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) - SMC内核仿真、传感器, v1.2.2
+
+定制驱动
+
+- [AppleALC](https://github.com/acidanthera/AppleALC/releases) - 声卡驱动 v1.5.9，设备ID是 Conexant 14F1/20D0，没有找到 [layout-id](https://github.com/acidanthera/AppleALC/wiki/Supported-codecs)，尝试3，或更换：VoodooHDA + AppleHDADisabler，另 AppleHDA
+- [itlwm](https://github.com/OpenIntelWireless/itlwm/) - Intel 无线网卡 v1.2.0，安装时可以事先把 Wifi 连接信息写在 Info.plist 里，配合 [HeliPort](https://github.com/OpenIntelWireless/HeliPort) 工具使用
+- [VoodooPS2](https://github.com/acidanthera/VoodooPS2) - 触摸板驱动，v2.2.2
+- [VoodooI2C](https://github.com/VoodooI2C/VoodooI2C/releases) - I2C 控制器设备驱动，v2.6.5
+- [NVMeFix](https://github.com/acidanthera/NVMeFix) - NVMe 提升兼容性 v1.0.6
+- [IntelBluetoothFirmware](https://github.com/OpenIntelWireless/IntelBluetoothFirmware) - Intel 蓝牙驱动 v1.1.2，设备ID：0x8087, 0x0a2b(不需要，核内驱动不了，使用 CSR4.0)
+- https://github.com/acidanthera/BrcmPatchRAM 博通蓝牙
 - USB 定制 - 用户 Hackintool 生成 ACPI 补丁
-- CPUFriend
+- [CPUFriend](https://github.com/acidanthera/CPUFriend) - 动态注入 CPU 电源管理数据, v1.2.3
 - [ACPIBatteryManager](https://github.com/RehabMan/OS-X-ACPI-Battery-Driver) - 电源管理驱动，修正电池电量信息，需要修复 DSDT.aml，[补丁文件](./ACPI/patch.txt)
+- [RTC Memory Fixup](https://github.com/acidanthera/RTCMemoryFixup/releases) - RTC 内存修正，v1.0.7，BIOS 时钟报错，有报警声，使用 RTCMemoryFixup.kext 屏蔽，加启动参数 rtcfx_exclude=0E-FF，去掉告警，但阻断了所有 RTC 区域，待优化
 
 [config.plist 配置参考](https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/kaby-lake.html)
 
